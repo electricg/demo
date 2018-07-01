@@ -1,0 +1,159 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+html {
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%; /* Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g */
+	    -ms-text-size-adjust: 100%; /* Correct text resizing oddly in IE6/7 when body font-size is set using em units */
+}
+body {
+	background: #FFF url(../images/texture_bg.jpg) no-repeat scroll top right;
+	color: #363636;
+	font-family: "GothamBookRegular";
+}
+header, section {
+	display: block;
+}
+p {
+	margin: 0;
+	padding: 0.5em 0;
+}
+
+/* Contain floats: h5bp.com/q */
+header:before, header:after { content: ""; display: table; }
+header:after { clear: both; }
+header { *zoom: 1; }
+
+.wrapper {
+	background: transparent none no-repeat scroll 0 140px;
+	-webkit-background-size: 100% auto;
+	   -moz-background-size: 100% auto;
+	     -o-background-size: 100% auto;
+	        background-size: 100% auto;
+	height: auto !important;
+	height: 100%;
+	min-height: 100%;
+	margin: 0 auto;
+}
+header {
+	display: table;
+	margin: 0 6%;
+	padding-top: 5px;
+	width: 88%;
+}
+.brand {
+	border:0; font: 0/0 a; text-shadow: none; color: transparent; /* For image replacement */
+	background: transparent url(../images/logo.png) no-repeat scroll 0 0;
+	display: table-cell;
+	height: 133px;
+	width: 133px;
+}
+.sub-title {
+	display: table-cell;
+	margin: 0;
+	padding-bottom: 8px;
+	vertical-align: bottom;
+	width: auto;
+}
+.location, .title {
+	color: #00729A;
+	font-size: 1.6em;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+.title {
+	font-family: "GothamBoldRegular";
+}
+
+.clue {
+	padding: 18% 10% 0;
+}
+.clue-code {
+	clear: both;
+	color: #FFF;
+	display: inline-block;
+	font-family: "GothamBoldRegular";
+	font-size: 1.4em;
+	font-weight: normal;
+	margin: 0 0 5%;
+	padding: 1% 5%;
+	width: 50%;
+	
+	background: rgb(0,114,154); /* Old browsers */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,114,154,1)), color-stop(100%,rgba(0,93,125,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(0,114,154,1) 0%,rgba(0,93,125,1) 100%); /* Chrome10+,Safari5.1+ */
+	background:    -moz-linear-gradient(top, rgba(0,114,154,1) 0%,rgba(0,93,125,1) 100%); /* FF3.6+ */
+	background:      -o-linear-gradient(top, rgba(0,114,154,1) 0%,rgba(0,93,125,1) 100%); /* Opera 11.10+ */
+	background:     -ms-linear-gradient(top, rgba(0,114,154,1) 0%,rgba(0,93,125,1) 100%); /* IE10+ */
+	background:         linear-gradient(top, rgba(0,114,154,1) 0%,rgba(0,93,125,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00729A', endColorstr='#005D7D',GradientType=0 ); /* IE6-9 */
+	
+	-webkit-border-radius: 5px;
+	   -moz-border-radius: 5px;
+	        border-radius: 5px;
+}
+.clue-title {
+	font-family: "GothamBoldRegular";
+	font-size: 1.4em;
+	font-weight: normal;
+	margin: 0;
+	padding: 0 0 0 5%;
+}
+.clue-description {
+	font-size: 1.4em;
+	line-height: 1.4em;
+	padding: 0 5%;
+}
+
+.reward-help {
+	list-style: none;
+	margin: 0;
+	padding: 0 0 0.5em;
+}
+.reward-help li {
+	display: inline-block;
+	list-style: none;
+	margin: 5px 0;
+	padding: 0;
+	text-align: center;
+	width: 31px;
+}
+.reward-help em {
+	display: block;
+	font-family: "GothamBoldRegular";
+	font-size: 0.6em;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1.2;
+}
+.reward-help strong {
+	background-color: #84005E;
+	color: #FFF;
+	display: block;
+	font-family: "GothamBoldRegular";
+	font-weight: normal;
+}
+
+
+/* media queries */
+@media all and (max-width: 480px) {
+	.wrapper {
+		background-image: url(../images/scroll_topcentre480.gif);
+	}
+	.clue {
+		padding-top: 21%;
+	}
+	.clue-code {
+		margin-bottom: 10px;
+		width: auto;
+	}
+}
+@media all and (min-width: 481px) {
+	.wrapper {
+		background-image: url(../images/scroll_topcentre640.gif);
+	}
+}
