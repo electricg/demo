@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Remove selected option with jQuery</title>
+    <meta name="description" content="Remove selected option from other select boxes with jQuery">
+    <meta name="author" content="Giulia Alfonsi @electric_g">
+    <meta name="viewport" content="width=device-width">
+	<style type="text/css">
+	/* code not necessary for the effect, just to make it pretty */
+    html {
+        background-color: #EEE;
+        overflow-y: scroll;
+    }
+    body {
+        color: #333;
+        font-family: Verdana;
+        font-size: 14px;
+        margin: 0 auto;
+        padding: 1em;
+        max-width: 480px;
+    }
+    h1 {
+        color: #ff670f;
+        font-size: 22px;
+        margin: 0 auto 1em;
+        text-align: center;
+    }
+    li {
+        font-size: 13px;
+    }
+    footer {
+        font-size: 0.9em;
+        font-variant: small-caps;
+        margin: 3em 0 0;
+    }
+	</style>
+</head>
+<body>
+    <h1>Remove selected option with jQuery</h1>
+    <ol>
+        <li>
+            <label><select class="topten">
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1" selected="selected">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select> pre-selected</label>
+        </li>
+        <li>
+            <select class="topten">
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select>
+        </li>
+        <li>
+            <select class="topten">
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select>
+        </li>
+        <li>
+            <select class="topten">
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select>
+        </li>
+        <li>
+            <select class="topten">
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select>
+        </li>
+        <li>
+            <select class="topten">
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select>
+        </li>
+        <li>
+            <label><select class="outside">
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select> not affected by the script</label>
+        </li>
+    </ol>
+    <p>Purpose of this script is to remove an already choosen option from the other &lt;select&gt; boxes. It is possible to decide which value is considered default (and therefore will not be deleted) in the script options.</p>
+    <footer>Works in Android Browser, Chrome, Chrome for Android, Dolphin Browser for Android, Firefox 4+, IE6, IE7, IE8, IE9, Opera 10+, Opera Mobile, Safari 5+</footer>
+    <script src="../../lib/js/jquery-1.6.2.min.js"></script>
+    <script>
+(function($) {
+	// Remove already choose options
+	$.fn.selectRemoveOption = function(options) {
+		var defaults = {
+			def         : -1,
+			classRemove : 'remove',
+			tagRemove   : 'span'
+		};
+		// extend default options with those provided
+		var opts = $.extend(defaults, options);
+
+		var $select = $(this);
+		// use the data method to store the previous value for each select box
+		$select.data('valOld', '');
+
+		// implementation code
+		return this.each(function() {
+			var $this = $(this),
+				valNew,
+				$justLeft, $toRemove;
+
+			$this.addClass(opts.classRemove);
+
+			function remove() {
+				var $others = $select.not($this);
+				valNew = $this.val();
+				// enable the just left option
+				$justLeft = $others.find(opts.tagRemove + '[value="' + $this.data('valOld') + '"]');
+				$justLeft.replaceWith('<option value="' + $this.data('valOld') + '">' + $justLeft.html() + '</option>');
+				// disable the selected option
+				if (valNew != opts.def) {
+					$toRemove = $others.find('option[value="' + valNew + '"]');
+					$toRemove.replaceWith('<' + opts.tagRemove + ' value="' + valNew + '">' + $toRemove.html() + '</' + opts.tagRemove + '>');
+				}
+				// memorize the value for the next change
+				$this.data('valOld', valNew);
+			}
+
+			// use the focus to store the previous value, since it's the only action certainly
+			// called at least for the first time. for the subsequent times, if focus is not
+			// called, the value is anyway stored in the object
+			$this.bind('focus', function() {
+				$this.data('valOld', $this.val());
+			})
+			.bind('change', function() {
+				remove();
+			});
+
+			// initialize
+			remove();
+		});
+	}; // end plugin definition
+})(jQuery);
+    </script>
+    <script>
+$(document).ready(function() {
+    $('.topten').selectRemoveOption();
+});
+    </script>
+</body>
+</html>

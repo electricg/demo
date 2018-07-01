@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Change color to select box with jQuery</title>
+    <meta name="description" content="Change color to select box if a value has been selected with jQuery">
+    <meta name="author" content="Giulia Alfonsi @electric_g">
+    <meta name="viewport" content="width=device-width">
+	<style type="text/css">
+	/* code not necessary for the effect, just to make it pretty */
+    html {
+        background-color: #EEE;
+        overflow-y: scroll;
+    }
+    body {
+        color: #333;
+        font-family: Verdana;
+        font-size: 14px;
+        margin: 0 auto;
+        padding: 1em;
+        max-width: 480px;
+    }
+    h1 {
+        color: #6D0019;
+        font-size: 22px;
+        margin: 0 auto 1em;
+        text-align: center;
+    }
+    li {
+        font-size: 13px;
+    }
+    footer {
+        font-size: 0.9em;
+        font-variant: small-caps;
+        margin: 3em 0 0;
+    }
+	
+    /* selectColored */
+    select.colorize option:not([disabled]) {
+    	color: #000; /* Firefox only */
+    }
+    select.colorize option.def:not([disabled]),
+    select.colorize.empty:not([disabled]) {
+        background-size: 0; /* Webkit hack */
+    	color: #999;
+    }
+	</style>
+</head>
+<body>
+    <h1>Change color to select box with jQuery</h1>
+    <ol>
+        <li>
+            <label><select>
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1" selected="selected">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select> pre-selected</label>
+        </li>
+        <li>
+            <label><select disabled="disabled">
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select> select disabled</label>
+        </li>
+        <li>
+            <label><select>
+                <option value="-1">Select a value</option>
+                <option value="0" disabled="disabled">HTML</option>
+                <option value="1">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select> one option disabled</label>
+        </li>
+        <li>
+            <select>
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select>
+        </li>
+        <li>
+            <select>
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select>
+        </li>
+        <li>
+            <select>
+                <option value="-1">Select a value</option>
+                <option value="0">HTML</option>
+                <option value="1">CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">jQuery</option>
+                <option value="4">Dojo</option>
+                <option value="5">MooTools</option>
+                <option value="6">Prototype</option>
+                <option value="7">Backbone.js</option>
+                <option value="8">Ember.js</option>
+                <option value="9">Node.js</option>
+            </select>
+        </li>
+    </ol>
+    <p>Purpose of this script is to give a visual feedback to &lt;select&gt; boxes with no option selected. It is possible to decide which value is considered default in the script options.</p>
+    <footer>Works in Android Browser, Chrome, Chrome for Android, Dolphin Browser for Android, Firefox 1+, IE9, Opera 10+, Opera Mobile, Safari 5+</footer>
+    <script src="../../lib/js/jquery-1.6.2.min.js"></script>
+    <script>
+(function($) {
+	// Color the empty select
+	$.fn.selectColored = function(options) {
+		var defaults = {
+			def        : -1,
+			classSel   : 'colorize',
+			classEmpty : 'empty',
+			classDef   : 'def'
+		};
+		// extend default options with those provided
+		var opts = $.extend(defaults, options);
+
+		// implementation code
+		return this.each(function() {
+			var $select = $(this);
+			$select
+				.addClass(opts.classSel)
+				.find('option[value="' + opts.def + '"]')
+				.addClass(opts.classDef);
+
+			function color() {
+				$select.toggleClass(opts.classEmpty, ($select.val() == opts.def));
+			}
+
+			$select.bind('change', function() {
+				color();
+			});
+
+			// initialize
+			color();
+		});
+	};// end plugin definition
+})(jQuery);
+    </script>
+    <script>
+$(document).ready(function() {
+    $('select').selectColored();
+});
+    </script>
+</body>
+</html>

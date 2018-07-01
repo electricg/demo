@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Show more/less in pure CSS3</title>
+    <meta name="description" content="Show more/less text in pure CSS3 using the :checked pseudo-class">
+    <meta name="author" content="Giulia Alfonsi @electric_g">
+    <meta name="viewport" content="width=device-width">
+    <style>
+    /* code not necessary for the effect, just to make it pretty */
+    html {
+        background-color: #EEE;
+        overflow-y: scroll;
+    }
+    body {
+        color: #333;
+        font-family: Verdana;
+        font-size: 14px;
+        margin: 0 auto;
+        padding: 1em;
+        max-width: 480px;
+    }
+    h1, h2 {
+        color: #005700;
+        font-size: 22px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    h2 {
+        font-size: 18px;
+        font-weight: normal;
+        margin-top: 1em;
+    }
+    ul {
+        margin: 0 auto;
+        padding: 0;
+    }
+    li {
+        border-bottom: 1px dotted #CCC;
+        list-style: none;
+        margin: 1em 0;
+        padding: 0 0 0.5em;
+    }
+    p {
+        margin: 0;
+        padding: 0;
+        text-align: justify;
+        text-indent: 1em;
+    }
+    label {
+        color: #005700;
+        font-size: 12px;
+        font-style: italic;
+    }
+    label:hover, label:active {
+        text-decoration: underline;
+    }
+    footer {
+        font-size: 0.9em;
+        font-variant: small-caps;
+        margin: 3em 0 0;
+    }
+    
+    /* code necessary for the effect */
+    p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    input {
+        display: none;
+    }
+    input ~ label {
+        cursor: pointer;
+    }
+    input ~ label:after {
+        content: "show more";
+    }
+    input:checked ~ p {
+        white-space: normal;
+    }
+    input:checked ~ label:after {
+        content: "show less";
+    }
+    input[type="radio"]:checked ~ label:after {
+        content: "";
+    }
+    </style>
+</head>
+<body>
+    <h1>Show more/less in pure CSS3</h1>
+    <h2>Demo 1: input checkbox</h2>
+    <ul>
+        <li>
+            <input type="checkbox" id="p1">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at felis in turpis fringilla venenatis sed in velit. Fusce urna augue, semper nec dapibus vitae, sagittis in lacus. Proin ac magna ut metus rutrum bibendum ac eu diam. Praesent fermentum mollis pellentesque. Fusce condimentum ultricies ipsum et faucibus. In lorem neque, ultricies iaculis commodo et, sagittis non lectus. Donec id mattis ante. Phasellus molestie imperdiet facilisis. Pellentesque odio tortor, imperdiet non volutpat a, hendrerit et libero. Nunc accumsan mi nec augue vestibulum aliquam. Duis sem augue, dictum sed dictum vitae, volutpat non lacus. Integer massa felis, imperdiet eget fringilla molestie, fermentum non dolor.</p>
+            <label for="p1"></label>
+        </li>
+        <li>
+            <input type="checkbox" id="p2">
+            <p>Donec porta convallis diam, a feugiat lectus lobortis a. Duis leo orci, auctor eget venenatis in, rutrum id nisi. Mauris fringilla elementum adipiscing. Phasellus fringilla ipsum vitae purus scelerisque porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam facilisis nisl ac neque vulputate ornare tincidunt sem blandit. Aliquam erat volutpat. Maecenas consequat turpis nunc, et suscipit diam. Phasellus auctor tempor mi, a suscipit odio vehicula eu. Duis eu dolor sit amet ante consequat dictum in sit amet dui. Donec sit amet tortor sed mauris malesuada convallis. Nunc ac sem dui. Etiam consequat eros in libero suscipit lacinia. Sed rutrum ultricies enim, non luctus lacus ultrices vel. Sed sit amet facilisis lacus. Morbi a erat in metus lobortis lobortis.</p>
+            <label for="p2"></label>
+        </li>
+        <li>
+            <input type="checkbox" id="p3">
+            <p>Maecenas vitae nulla nec nisl vestibulum placerat id id augue. Aliquam dui risus, vestibulum nec luctus ac, tincidunt et massa. Aliquam fringilla, diam eu tincidunt pellentesque, urna metus facilisis urna, vel vestibulum nisi leo vel turpis. Nullam dolor lorem, pellentesque eget volutpat nec, vehicula et arcu. In a sapien libero. Fusce metus lacus, accumsan eget sagittis vel, mollis vel magna. Cras consequat laoreet nunc quis vestibulum. Cras ipsum dui, faucibus vel dignissim sed, ultrices ut purus. Curabitur viverra tincidunt bibendum. In quis massa risus, sit amet tincidunt lorem. Duis a orci orci, et sollicitudin nibh. Quisque mattis commodo mi non porta. Vestibulum id turpis vitae lorem rhoncus consequat et in metus. Vestibulum eu turpis tortor. Morbi ut diam lectus. Quisque nec cursus ligula.</p>
+            <label for="p3"></label>
+        </li>
+    </ul>
+    
+    <h2>Demo 2: input radio</h2>
+    <ul>
+        <li>
+            <input type="radio" name="demo" id="p4">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at felis in turpis fringilla venenatis sed in velit. Fusce urna augue, semper nec dapibus vitae, sagittis in lacus. Proin ac magna ut metus rutrum bibendum ac eu diam. Praesent fermentum mollis pellentesque. Fusce condimentum ultricies ipsum et faucibus. In lorem neque, ultricies iaculis commodo et, sagittis non lectus. Donec id mattis ante. Phasellus molestie imperdiet facilisis. Pellentesque odio tortor, imperdiet non volutpat a, hendrerit et libero. Nunc accumsan mi nec augue vestibulum aliquam. Duis sem augue, dictum sed dictum vitae, volutpat non lacus. Integer massa felis, imperdiet eget fringilla molestie, fermentum non dolor.</p>
+            <label for="p4"></label>
+        </li>
+        <li>
+            <input type="radio" name="demo" id="p5">
+            <p>Donec porta convallis diam, a feugiat lectus lobortis a. Duis leo orci, auctor eget venenatis in, rutrum id nisi. Mauris fringilla elementum adipiscing. Phasellus fringilla ipsum vitae purus scelerisque porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam facilisis nisl ac neque vulputate ornare tincidunt sem blandit. Aliquam erat volutpat. Maecenas consequat turpis nunc, et suscipit diam. Phasellus auctor tempor mi, a suscipit odio vehicula eu. Duis eu dolor sit amet ante consequat dictum in sit amet dui. Donec sit amet tortor sed mauris malesuada convallis. Nunc ac sem dui. Etiam consequat eros in libero suscipit lacinia. Sed rutrum ultricies enim, non luctus lacus ultrices vel. Sed sit amet facilisis lacus. Morbi a erat in metus lobortis lobortis.</p>
+            <label for="p5"></label>
+        </li>
+        <li>
+            <input type="radio" name="demo" id="p6">
+            <p>Maecenas vitae nulla nec nisl vestibulum placerat id id augue. Aliquam dui risus, vestibulum nec luctus ac, tincidunt et massa. Aliquam fringilla, diam eu tincidunt pellentesque, urna metus facilisis urna, vel vestibulum nisi leo vel turpis. Nullam dolor lorem, pellentesque eget volutpat nec, vehicula et arcu. In a sapien libero. Fusce metus lacus, accumsan eget sagittis vel, mollis vel magna. Cras consequat laoreet nunc quis vestibulum. Cras ipsum dui, faucibus vel dignissim sed, ultrices ut purus. Curabitur viverra tincidunt bibendum. In quis massa risus, sit amet tincidunt lorem. Duis a orci orci, et sollicitudin nibh. Quisque mattis commodo mi non porta. Vestibulum id turpis vitae lorem rhoncus consequat et in metus. Vestibulum eu turpis tortor. Morbi ut diam lectus. Quisque nec cursus ligula.</p>
+            <label for="p6"></label>
+        </li>
+    </ul>
+    <footer>Works in Chrome, Firefox 1+, IE9, Opera 10+, Opera Mobile, Safari 5+</footer>
+</body>
+</html>
